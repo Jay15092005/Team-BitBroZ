@@ -29,7 +29,7 @@ Here’s How It Works:
 
 ## 🌍 Impact
 
-- ⏱️ **Faster Answers**: No Need To Wait For Reports. Answers Come Quickly.  
+- ⏱️ **Faster Answers**: No Need To Wait For Reports. Answers Come Quicklyy.  
 - 🌐 **For Everyone**: Anyone Can Use It — Not Just Data Experts.  
 - 🎯 **Smarter Decisions**: Helps People Make Better Choices Based On Real Data.  
 - 📉 **Less Work For Tech Teams**: Tech Teams Can Save Time And Focus On Bigger Things.  
