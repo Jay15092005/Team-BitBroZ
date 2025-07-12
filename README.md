@@ -4,37 +4,37 @@
 
 ## 🧩 Problem Statement
 
-In today’s data-driven world, organizations collect an enormous amount of data. However, most of this data remains underutilized because:
+Today, Companies And Organizations Collect A Huge Amount Of Data. But Most Of This Data Is Not Used Properly Because:
 
-- Non-technical users (like business teams, managers, or educators) struggle to extract useful insights.
-- Manually analyzing large datasets is slow, difficult, and prone to error.
-- Relying on data teams for every question causes major delays in decision-making.
-- Traditional AI tools can't handle direct analysis of large datasets due to their size and complexity.
+- People Who Are Not Technical (Like Business Teams Or Teachers) Find It Hard To Understand Or Use The Data.  
+- Looking Through Big Data Manually Takes A Lot Of Time And Is Difficult.  
+- Teams Have To Wait For Data Experts To Write Queries And Give Answers, Which Causes Delays.  
+- Normal AI Tools Can’t Work Directly With Very Large Data Due To Their Limits.  
 
-This results in **missed opportunities**, **slower decisions**, and **underused data potential**.
+This Leads To **Missed Chances**, **Slow Decisions**, And **Data Not Being Used Fully**.
 
 ---
 
 ## 💡 What We Are Solving
 
-Our solution enables anyone to ask questions in simple language — like “What was the most sold product last month?” — and get clear, useful answers pulled directly from large datasets.
+Our Project Helps Anyone Ask Questions In Simple Language — Like “What Was The Most Sold Product Last Month?” — And Get Clear And Helpful Answers From Big Data.
 
-We do this by:
-- Understanding natural language questions,
-- Generating smart queries,
-- Processing large data,
-- And delivering easy-to-understand responses.
+Here’s How It Works:  
+- We Understand The Question Written In Plain English,  
+- Create A Smart Data Query,  
+- Run It On Large Data,  
+- And Show The Answer In Easy Words.
 
 ---
 
 ## 🌍 Impact
 
-- ⏱️ **Instant Answers**: Reduces waiting time for reports or data analysis.
-- 🌐 **Empowers Everyone**: Gives decision-making power to all team members, not just analysts.
-- 🎯 **Better Decisions**: Helps businesses and institutions take quick, data-backed actions.
-- 📉 **Reduces Bottlenecks**: Frees up tech teams to focus on innovation instead of repeated tasks.
+- ⏱️ **Faster Answers**: No Need To Wait For Reports. Answers Come Quickly.  
+- 🌐 **For Everyone**: Anyone Can Use It — Not Just Data Experts.  
+- 🎯 **Smarter Decisions**: Helps People Make Better Choices Based On Real Data.  
+- 📉 **Less Work For Tech Teams**: Tech Teams Can Save Time And Focus On Bigger Things.  
 
-This project turns **complex data** into **simple conversation** — making data accessible, understandable, and actionable.
+This Tool Turns **Hard-To-Understand Data** Into A **Simple Conversation** — So Everyone Can Understand And Use It.
 
 ---
 
@@ -46,4 +46,3 @@ This project turns **complex data** into **simple conversation** — making data
 | Jyotiraditya Parmar | jimmycodes2110@gmail.com      |
 | Nirav Chotaliya     | nchotaliya2005@gmail.com      |
 | Meshwa Dasadiya     | meshwadasadiya13@gmail.com    |
-
