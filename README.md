@@ -47,9 +47,3 @@ This project turns **complex data** into **simple conversation** — making data
 | Nirav Chotaliya     | nchotaliya2005@gmail.com      |
 | Meshwa Dasadiya     | meshwadasadiya13@gmail.com    |
 
----
-
-## 🔗 Note
-
-✅ Added `spe-odoo` as a collaborator on our GitHub repository.
-
