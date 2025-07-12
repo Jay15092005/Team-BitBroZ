@@ -1,0 +1,143 @@
+{
+  "name": "Image Collage Creator",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "image-collage",
+        "options": {}
+      },
+      "id": "webhook-node",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [240, 300],
+      "webhookId": "image-collage-webhook"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.image1_url }}",
+        "options": {}
+      },
+      "id": "http-request-1",
+      "name": "Download Image 1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [460, 200]
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.image2_url }}",
+        "options": {}
+      },
+      "id": "http-request-2",
+      "name": "Download Image 2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [460, 400]
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combinationMode": "mergeByIndex",
+        "options": {}
+      },
+      "id": "merge-node",
+      "name": "Merge Images",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const sharp = require('sharp');\n\n// Get the binary data from both images\nconst image1Buffer = Buffer.from($input.first().binary.data, 'base64');\nconst image2Buffer = Buffer.from($input.last().binary.data, 'base64');\n\n// Get metadata for both images\nconst image1Meta = await sharp(image1Buffer).metadata();\nconst image2Meta = await sharp(image2Buffer).metadata();\n\n// Calculate dimensions for the collage\nconst maxWidth = Math.max(image1Meta.width, image2Meta.width);\nconst totalHeight = image1Meta.height + image2Meta.height;\n\n// Resize images to same width if needed\nconst resizedImage1 = await sharp(image1Buffer)\n  .resize(maxWidth, null, { fit: 'contain', background: { r: 255, g: 255, b: 255, alpha: 1 } })\n  .toBuffer();\n\nconst resizedImage2 = await sharp(image2Buffer)\n  .resize(maxWidth, null, { fit: 'contain', background: { r: 255, g: 255, b: 255, alpha: 1 } })\n  .toBuffer();\n\n// Get new heights after resize\nconst resized1Meta = await sharp(resizedImage1).metadata();\nconst resized2Meta = await sharp(resizedImage2).metadata();\n\n// Create the collage\nconst collage = await sharp({\n  create: {\n    width: maxWidth,\n    height: resized1Meta.height + resized2Meta.height,\n    channels: 3,\n    background: { r: 255, g: 255, b: 255 }\n  }\n})\n.composite([\n  { input: resizedImage1, top: 0, left: 0 },\n  { input: resizedImage2, top: resized1Meta.height, left: 0 }\n])\n.jpeg({ quality: 90 })\n.toBuffer();\n\n// Return the result\nreturn {\n  json: {\n    success: true,\n    message: \"Collage created successfully\",\n    dimensions: {\n      width: maxWidth,\n      height: resized1Meta.height + resized2Meta.height\n    }\n  },\n  binary: {\n    data: collage.toString('base64'),\n    mimeType: 'image/jpeg',\n    fileName: 'collage.jpg'\n  }\n};"
+      },
+      "id": "code-node",
+      "name": "Create Collage",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [900, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "binary",
+        "options": {}
+      },
+      "id": "respond-node",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [1120, 300]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Download Image 1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Download Image 2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download Image 1": {
+      "main": [
+        [
+          {
+            "node": "Merge Images",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download Image 2": {
+      "main": [
+        [
+          {
+            "node": "Merge Images",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge Images": {
+      "main": [
+        [
+          {
+            "node": "Create Collage",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Collage": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-01-01T00:00:00.000Z",
+  "versionId": "1"
+}
